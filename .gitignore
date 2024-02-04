@@ -1,3 +1,5 @@
 /.vs
 bin/
 obj/
+/src/core7api/core7api.csproj.user
+/src/.vs
