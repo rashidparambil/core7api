@@ -11,7 +11,7 @@ namespace core7api.Controllers
     public class SqlController : ControllerBase
     {
         // GET: api/<DashboardController>
-        [HttpGet]
+         [HttpGet(Name = "GetAccounts")]
         public IEnumerable<accounts> Get()
         {
 
@@ -26,29 +26,5 @@ namespace core7api.Controllers
             return result;
         }
 
-        // GET api/<DashboardController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
-
-        // POST api/<DashboardController>
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
-        }
-
-        // PUT api/<DashboardController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/<DashboardController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
-    }
+ }
 }
