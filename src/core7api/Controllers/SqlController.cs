@@ -1,6 +1,8 @@
 ﻿using Dapper;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Npgsql;
+using System.Configuration;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -10,14 +12,19 @@ namespace core7api.Controllers
     [ApiController]
     public class SqlController : ControllerBase
     {
+        public IConfiguration _configuration;
+        public SqlController(IConfiguration configuration)
+        {
+            _configuration = configuration;
+        }
+
+
         // GET: api/<DashboardController>
-         [HttpGet(Name = "GetAccounts")]
+        [HttpGet(Name = "GetAccounts")]
         public IEnumerable<accounts> Get()
         {
-
             var result = new List<accounts>();
-
-            using (var connection = new NpgsqlConnection("User ID=rashid;Password=.x#Yj6E7no@84;Host=34.134.16.113;Port=5432;Database=code360db;"))
+            using (var connection = new NpgsqlConnection(_configuration.GetConnectionString("coreDb")))
             {
                 connection.Open();
                 result = connection.Query<accounts>("SELECT * FROM accounts").ToList();
