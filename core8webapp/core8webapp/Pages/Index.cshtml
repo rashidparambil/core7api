@@ -1,0 +1,38 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+   
+    <h2>Here is the list of Accounts</h2>
+    @if(string.IsNullOrEmpty(@Model.error))
+    {
+    <table style="width:50%">
+        <thead>
+            <tr>
+                <th>User Id</th>
+                <th>User Name</th>
+                <th>Email</th>
+                <th>Password</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var acc in @Model.Accounts)
+            {
+                <tr>
+                    <td>@acc.user_id</td>
+                    <td>@acc.username</td>
+                    <td>@acc.email</td>
+                    <td>***********</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    }else{
+        <p>@Model.error</p>
+    }
+
+</div>
